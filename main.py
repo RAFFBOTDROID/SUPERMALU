@@ -41,13 +41,13 @@ RESPOSTAS_RAPIDAS = {
 def perguntar_ia(texto):
     try:
         chat = client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": texto}
             ],
             temperature=0.6,
-            max_tokens=80
+            max_tokens=120
         )
 
         resposta = chat.choices[0].message.content.strip()
@@ -63,7 +63,7 @@ def perguntar_ia(texto):
 
     except Exception as e:
         logging.error(f"ERRO IA: {e}")
-        return "Deu ruim aqui mas já volto 😎"
+        return "Tive um bug mental aqui 😂 tenta de novo"
 
 
 # ============== START ======================

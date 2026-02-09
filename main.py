@@ -76,6 +76,10 @@ async def responder(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not msg or not msg.text:
         return
 
+    # 🚫 NÃO RESPONDER NO PRIVADO
+    if msg.chat.type == "private":
+        return
+
     texto_original = msg.text.strip()
     texto = texto_original.lower()
 
@@ -103,7 +107,6 @@ async def responder(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # IA
     resposta = perguntar_ia(texto_original)
     await msg.reply_text(resposta)
-
 
 # ============== MAIN ======================
 def main():
